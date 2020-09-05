@@ -1,0 +1,106 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding: 5rem; min-height: 100vh;">
+
+  <div class="card bg-white">
+    <div class="card-body" style="padding-left: 5rem; padding-right: 5rem;">
+
+      <h2 style="color: #14A76C;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">
+        <b>Elective Modules Sign Up</b></h2>
+      <br>
+      <p style="color: red; text-align: center; font-size: 1.2rem;">*Please sign up for <b>2</b> different modules*</p>
+      <br>
+      
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Modules</th>
+            <th scope="col">Monday 11am</th>
+            <th scope="col">Tuesday 11am</th>
+            <th scope="col">Wednesday 11am</th>
+            <th scope="col">Thursday 11am</th>
+            <th scope="col">Friday 11am</th>
+            
+            <th scope="col">Monday 4pm</th>
+            <th scope="col">Tuesday 4pm</th>
+            <th scope="col">Wednesday 4pm</th>
+            <th scope="col">Thursday 4pm</th>
+            <th scope="col">Friday 4pm</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let module of modules">
+          <tr>
+            <th >{{module.moduleName}}</th>
+            <td >{{module.Mon11to1}}</td>
+            <td>{{module.Tues11to1}}</td>
+            <td >{{module.Wed11to1}}</td>
+            <td>{{module.Thurs11to1}}</td>
+            <td >{{module.Fri11to1}}</td>
+
+            <td>{{module.Mon4to6}}</td>
+            <td>{{module.Tues4to6}}</td>
+            <td>{{module.Mon4to6}}</td>
+            <td>{{module.Mon4to6}}</td>
+            <td>{{module.Mon4to6}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form [formGroup]="myForm" style="text-align: center;">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Type of Student</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Select Your Timing</mat-label>
+          <mat-select formControlName="timing">
+            <mat-option *ngFor="let timing of timings" [value]="timing">
+              {{timing}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Module A</mat-label>
+          <mat-select formControlName="modA">
+            <mat-option *ngFor="let modA of lists" [value]="modA">
+              {{modA.moduleName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Module B</mat-label>
+          <mat-select formControlName="modB">
+            <mat-option *ngFor="let modB of lists" [value]="modB">
+              {{modB.moduleName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+
+      <div *ngIf="myForm.get('type', 'timing').hasError('required')"
+        class="error">
+        All questions are required. Please check that you have answered everything.
+      </div>
+      <br>
+
+        <button mat-raised-button style="text-align: center;" (click)="onSubmit()" >Sign up</button>
+      </form>
+
+      <br>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
