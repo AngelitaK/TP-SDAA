@@ -1,0 +1,111 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding-left: 5rem; padding-right: 5rem; padding-top: 3rem; min-height: 100vh;">
+  <br>
+  <br>
+  <input id="search" type="text" [(ngModel)]="term" placeholder="Search modules here">
+  <br>
+  <br>
+  <h2 style="color: #14A76C;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><b>Modules Available</b></h2>
+  <br>
+  
+  <div *ngIf="isAdmin">
+    <button style="text-align:center" (click)="open(content)">Add Module</button>
+    <br>
+  </div>
+  <br>
+  
+  <div class="row" style="margin: auto; padding-left: 5%;">
+    <div class="col-sm-4 example hoverable" *ngFor="let module of modules | filter: term" >
+      <div class="card card-flip h-100">
+        <div class="card-front text-white bg-dark">
+          <div class="card-body">
+            <img style="width:300px; height: 400px" src="data:image/jpeg;base64,{{module.modulePic}}">
+            <br>
+            <h3 class="card-title">{{module.moduleName}}</h3>
+            <p class="card-text"><b>Category: </b>{{module.category}}</p>
+            <p class="card-text"><b>Slots Left: </b>{{module.classSize}}</p>
+          </div>
+        </div>
+        <!--Card Back-->
+        <div class="card-back bg-white">
+          <div class="card-body">
+            <h3 class="card-title"><b>About The Module</b></h3>
+            <p class="card-text">{{module.info}}</p>
+            <p class="card-text"><b>Venue: </b>{{module.venue}}</p>
+
+            <button style="text-align:center; font-size: 1rem; width:fit-content; height: 3rem;" (click)="goToInfo(module._id)">See More</button>
+            <br>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+
+<!--ADD MODULE MODAL-->
+<ng-template #content let-modal>
+  <div class="modal-header" style="text-align: center;">
+    <h4 class="modal-title" id="modal-basic-title">Add A Module</h4>
+    <button style="background-color: transparent; width: fit-content;" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" style="text-align: center;">
+    <form [formGroup]="myForm" novalidate>
+
+      <label for="password">Module Name: </label>
+      <p><input formControlName="moduleName" id="moduleName" type="text" required="true" placeholder="Name Of Module">
+      </p>
+
+      <label for="password">Module Category: </label>
+      <p><input formControlName="category" id="category" type="text" required="true" placeholder="Module Category"></p>
+
+      <label for="password">Class Size: </label>
+      <p><input formControlName="classSize" id="classSize" type="text" required="true" placeholder="Class Size"></p>
+
+      <label for="password">Module Information: </label>
+      <p><input formControlName="info" id="info" type="text" required="true" placeholder="Module Information"></p>
+
+      <label for="password">Module Venue: </label>
+      <p><input formControlName="venue" id="venue" type="text" required="true" placeholder="Module Venue"></p>
+
+      <label for="password">Picture 1 (Display Photo): </label>
+      <p><input type="file" formControlName="modulePic" (change)="imageString($event)"></p>
+
+      <label for="password">Picture 2 (Info Photo): </label>
+      <p><input type="file" formControlName="modulePic2" (change)="imageString2($event)"></p>
+
+      <label for="password"  style="text-align: center; display: block; margin: auto;">Timings: </label>
+      <mat-checkbox formControlName="Mon11to1" class="example-margin">Monday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Tues11to1" class="example-margin">Tuesday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Wed11to1" class="example-margin">Wednesday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Thurs11to1" class="example-margin">Thursday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Fri11to1" class="example-margin">Friday 11am to 1pm</mat-checkbox>
+      <br>
+
+      <mat-checkbox formControlName="Mon4to6" class="example-margin">Monday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Tues4to6" class="example-margin">Tuesday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Wed4to6" class="example-margin">Wednesday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Thurs4to6" class="example-margin">Thursday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Fri4to6" class="example-margin">Friday 4pm to 6pm</mat-checkbox>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button style="width: fit-content;"  type="button" class="btn btn-outline-dark"  (click)="onSubmit('Save click')" (click)="modal.close('Save click')">Add</button>
+  </div>
+</ng-template>
