@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding: 5rem; min-height: 100vh;">
+    <br>
+    <h2 style="text-align:center; color: #14A76C;"><b>Medical Declaration</b></h2>
+    <br>
+ 
+    <button style="text-align:center" routerLink="/electivemodules" routerLinkActive="active">See Elective Modules</button>
+    <br>
+    <br>
+
+    <div class="row" style="padding-left: 2rem; padding-right: 2rem;">
+        <div class="col-sm-4"  *ngFor="let submission of submissions">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Student Email: </b></h5>
+                    <h5>{{submission.email}}</h5>
+                    <h5 class="card-title"><b>Fullname: </b>{{submission.fullname}}</h5>
+                    <h5 class="card-title"><b>Admin No. : </b>{{submission.adminno}}</h5>
+                    <br>
+                    <p class="card-text"><b>Question 1: </b>{{submission.question1}}</p>
+                    <p class="card-text"><b>Question 2: </b>{{submission.question2}}</p>
+                    <p class="card-text"><b>Question 3: </b>{{submission.question3}}</p>
+                    <p class="card-text"><b>Question 4: </b>{{submission.question4}}</p>
+                    <p class="card-text"><b>Question 5: </b>{{submission.question5}}</p>
+                    <p><button style="text-align:center; width: 8rem" (click)="deleteDeclaration(submission._id)">Delete</button></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>
