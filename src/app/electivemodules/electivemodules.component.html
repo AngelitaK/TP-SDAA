@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding: 5rem; min-height: 100vh;">
+  <br>
+  <h2 style="text-align:center; color: #14A76C;"><b>Elective Modules</b></h2>
+  <br>
+
+  <button *ngIf="isAdmin" style="text-align:center" routerLink="/admin" routerLinkActive="active">See Medical
+    Declaration</button>
+  <br>
+  <br>
+
+  <div class="row" style="padding-left: 2rem; padding-right: 2rem;">
+    <div class="col-sm-4" *ngFor="let submission of submissions">
+      <div class="card text-white bg-dark">
+        <div class="card-body" *ngIf="isAdmin">
+
+          <h5 class="card-title"><b>Student Email: </b> {{submission.email}}</h5>
+          <h5 class="card-title"><b>Fullname: </b>{{submission.fullname}}</h5>
+          <h5 class="card-title"><b>Admin No. : </b>{{submission.adminno}}</h5>
+          <br>
+          <p class="card-text"><b>Type of Student: </b>{{submission.type}}</p>
+          <p class="card-text"><b>Timing: </b>{{submission.timing}}</p>
+          <p class="card-text"><b>Module A: </b>{{submission.modA.moduleName}}</p>
+          <p class="card-text"><b>Module B: </b>{{submission.modB.moduleName}}</p>
+          <p class="card-text" *ngIf="submission.status != null"><b>Status: </b>{{submission.status}}</p>
+
+          <form [formGroup]="myForm" novalidate *ngIf="isAdmin">
+
+            <mat-form-field appearance="fill"  *ngIf="submission.status == null">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status">
+                <mat-option required="true" *ngFor="let status of stats" [value]="status">
+                  {{status}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+          </form>
+        </div>
+        <div class="card-body" *ngIf="isStudent">
+          <h5 class="card-title"><b>Student Email: </b></h5>
+          <h5>{{submission.email}}</h5>
+          <h5 class="card-title"><b>Fullname: </b>{{submission.fullname}}</h5>
+          <h5 class="card-title"><b>Admin No. : </b>{{submission.adminno}}</h5>
+          <br>
+          <p class="card-text"><b>Type of Student: </b>{{submission.type}}</p>
+          <p class="card-text"><b>Timing: </b>{{submission.timing}}</p>
+          <p class="card-text"><b>Module A: </b>{{submission.modA.moduleName}}</p>
+          <p class="card-text"><b>Module B: </b>{{submission.modB.moduleName}}</p>
+          <p class="card-text" *ngIf="submission.status != null"><b>Status: </b>{{submission.status}}</p>
+        </div>
+
+        <div class="row" *ngIf="isAdmin" style="padding: 1rem">
+          <div class="col-sm">
+            <button style="text-align:center; width: 8rem" (click)="increaseQuote(submission._id, submission.status)">Status</button>
+          </div>
+          <div class="col-sm">
+            <button style="text-align:center; width: 8rem" (click)="deleteStudentElective(submission._id)">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>

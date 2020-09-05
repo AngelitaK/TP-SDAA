@@ -1,0 +1,19 @@
+button{
+    color:#14A76C;
+    background-color: #4E5357;
+    border-color: transparent;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 20rem;
+    height: 3rem;
+}
+
+button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    border: none;
+}
+
+.col-sm-4{
+    padding-bottom: 3rem;
+}
