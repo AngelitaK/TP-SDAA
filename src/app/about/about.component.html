@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding-top: 3rem;">
+  <br>
+  <div style="text-align:center">
+    <h2 style="color: #14A76C;"><b>Our Purpose</b></h2>
+    <p style="color: #14A76C; font-size: 1rem;">Our purpose is to create a platform where students can easily browse
+      through the elective
+      modules
+      and submit their required materials all in one place online.</p>
+  </div>
+
+  <br>
+
+  <h2 style="text-align:center; color: #14A76C;"><b>Get In Touch With Us</b></h2>
+  <br>
+  <div class="container-fluid" style="padding-left: 40%;">
+    <div class="row no-gutters">
+      <div class="col-2">
+        <p><b>Email: </b><p>
+        <p ><b>Telephone: </b></p>
+        <p ><b>Operating Hours: </b><p>
+        <p ><b>Address: </b><p>
+      </div>
+      
+      <div class="col-3">
+        <p><a href="mailto:sdaa@tp.edu.sg">sdaa@tp.edu.sg</a><p>
+        <p>+65 6780 5353</p>
+        <p>0830 - 1830 hrs (Weekdays) <p>
+        <p>Student Development & Alumni Affairs Department
+            <br>
+            Temasek Polytechnic
+            <br>
+            21 Tampines Avenue 1 Blk 26A Sports & Arts Centre Level 3 Singapore 529757<p>
+      </div>
+      
+    </div>
+
+  </div>
+
+  <br>
+
+  <div style="text-align:center">
+    <h2 style="color: #14A76C;"><b>Or Directly Send Us A Message</b></h2>
+    <br>
+    <form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit(myForm)">
+      <p><input formControlName="email" id="email" type="email" placeholder="Email"></p>
+      <p><input formControlName="fullname" id="fullname" type="text" placeholder="Full Name"></p>
+      <p><input formControlName="message" id="message" type="text" placeholder="Message"></p>
+      <p><button type="submit">Send</button></p>
+    </form>
+    <br>
+  </div>
+  
+</div>
+
+<app-footer></app-footer>
