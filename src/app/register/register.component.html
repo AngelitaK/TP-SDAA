@@ -1,0 +1,75 @@
+<div style="background-color: #272727; min-height: 120vh;">
+  <!--tp logo-->
+  <div style="text-align:center">
+    <br>
+    <img width="300" alt="Temasek Poly Logo" src="assets/tplogo.png">
+  </div>
+
+  <br>
+  <br>
+
+  <div class="container">
+    <form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit(myForm)" style="text-align: center;">
+
+      <label for="email">Email: </label>
+      <br>
+      <input style="margin: auto;" type="email" formControlName="email" id="email" class="form-control" placeholder="Type in your email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+      </div>
+      <br>
+
+      <label for="password">Password: </label>
+      <br>
+      <input style="margin: auto;" [type]="hide ? 'password' : 'text'" formControlName="password" id="password" class="form-control"
+        placeholder="Minimum 6 characters" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      <button style="background-color: transparent; " mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <br>
+
+      <label for="adminno">Admin No./Staff No.: </label>
+      <br>
+      <input style="margin: auto;" type="text" formControlName="adminno" id="adminno" class="form-control"
+        placeholder="Type in your admin number" [ngClass]="{ 'is-invalid': submitted && f.adminno.errors }" />
+      <div *ngIf="submitted && f.adminno.errors" class="invalid-feedback">
+        <div *ngIf="f.adminno.errors.required">Admin No. is required</div>
+      </div>
+      <br>
+
+      <label for="fullname">Full Name: </label>
+      <br>
+      <input style="margin: auto;" type="text" formControlName="fullname" id="fullname" class="form-control"
+        placeholder="Type in your full name" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
+      <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+        <div *ngIf="f.fullname.errors.required">Full name is required</div>
+      </div>
+      <br>
+
+      <label for="role">Role: </label>
+      <br>
+      <select style="margin: auto;" class="custom-select" formControlName="role" id="role"
+        [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+        <option value="">Choose your role</option>
+        <option *ngFor="let roles of role" [ngValue]="roles">{{roles}}</option>
+      </select>
+      <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+        <div *ngIf="f.role.errors.required">Role is required</div>
+      </div>
+      <br>
+      <br>
+
+      <div>
+        <button type="submit">Register</button>
+      </div>
+
+    </form>
+  </div>
+
+  <br>
+  <p style="text-align:center"><a routerLink="/login" routerLinkActive="active">I Already Registered</a></p>
+</div>
