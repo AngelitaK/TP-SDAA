@@ -1,0 +1,82 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding-top: 3rem;">
+  <br>
+  <h2 style="text-align:center; color: #14A76C;"><b>Account Information</b></h2>
+  <br>
+
+  <div class="bs-example">
+    <form [formGroup]="myForm" novalidate>
+
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <p><input formControlName="email" disabled="true" type="email" id="email" value="{{user.email}}" /></p>
+      </div>
+
+      <div class="form-group">
+        <label *ngIf="isStudent" for="adminno">Admin No.: </label>
+        <label *ngIf="isAdmin" for="adminno">Staff No.: </label>
+        <p><input formControlName="adminno" type="text" required="true" id="adminno" value="{{user.adminno}}" /></p>
+      </div>
+
+      <div class="form-group">
+        <label for="fullname">Full Name: </label>
+        <p><input formControlName="fullname" type="text" required="true" id="fullname" value="{{user.fullname}}" /></p>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role: </label>
+        <p><input formControlName="role" disabled="true" type="text" id="role" value="{{user.role}}" /></p>
+      </div>
+      <br>
+      <button style="text-align: center;" (click)="open(content)" >Update Account</button>
+      <br>
+      <br>
+      <button type="submit" style="text-align: center;" (click)="open(content2)">Delete Account</button>
+      <br>
+      <br>
+      <div *ngIf="isStudent">
+        <button type="submit" style="text-align: center;width: 20rem;" routerLink="/electivemodules" routerLinkActive="active">See Your Elective Modules</button>
+      </div>
+      
+    </form>
+  </div>
+  
+  <br>
+
+</div>
+<app-footer></app-footer>  
+
+<!--UPDATE MODAL-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Account Information?</h4>
+    <button style="background-color: transparent; width: fit-content;" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p> Confirm to update your account. </p>
+  </div>
+  <div class="modal-footer">
+    <button style="width: fit-content;"  type="button" class="btn btn-outline-dark" (click)="onSubmit('Save click')" (click)="modal.close('Save click')">Update</button>
+  </div>
+</ng-template>
+
+<!--DELETE MODAL-->
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Account?</h4>
+    <button style="background-color: transparent; width: fit-content;" type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p> Confirm delete account? This action is irreversible and will result in loss of data.</p>
+  </div>
+  <div class="modal-footer">
+    <button style="width: fit-content;" type="button" class="btn btn-outline-dark" (click)="delete('Save click')" (click)="modal.close('Save click')">Delete</button>
+  </div>
+</ng-template>
