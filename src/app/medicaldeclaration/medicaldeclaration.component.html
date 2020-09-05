@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding: 5rem;">
+
+  <div class="card bg-white">
+    <div class="card-body" style="padding-left: 5rem; padding-right: 5rem;">
+
+      <h3
+        style="font-weight: bold; color: #14A76C;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">
+        Medical Declaration Form</h3>
+      <h6 style="color: red; text-align: center;">*Denotes Mandatory</h6>
+      <br>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <p>Do you currently have any known conditions (medical, physical, psychological)
+          that limits your participation in physical activities?</p>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+          formControlName="question1">
+          <mat-radio-button class="example-radio-button" *ngFor="let answer of answers" [value]="answer">
+            {{answer}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <p>Do you currently have any known conditions for which you should not do
+          physical activities for 10 weeks or more?</p>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+          formControlName="question2">
+          <mat-radio-button class="example-radio-button" *ngFor="let answer of answers" [value]="answer">
+            {{answer}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <p>Are you currently on routine medication?</p>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+          formControlName="question3">
+          <mat-radio-button class="example-radio-button" *ngFor="let answer of answers" [value]="answer">
+            {{answer}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <p>I will need to apply for exemption from Sports & Wellness due to medical reasons
+          and will be submitting my form with the Doctor's memo via email.</p>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+          formControlName="question4">
+          <mat-radio-button class="example-radio-button" *ngFor="let answer of answers" [value]="answer">
+            {{answer}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <br>
+
+        <p>If your answer is yes to any of the above questions, please provide the details here,
+          including the date/year of occurrence of illness or injury. Please write 'N/A" if your
+          answer is "no" to all of the above questions.</p>
+        <p>
+          <input formControlName="question5" id="message" type="text"></p>
+
+
+        <div *ngIf="form.get('question1', 'question2', 'question3','question4', 'question5').hasError('required')"
+          class="error">
+          All questions are required. Please check that you have answered everything.
+        </div>
+
+        <br>
+        <button mat-raised-button style="display: block; margin: auto;background:#2F4454;color: #14A76C">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
