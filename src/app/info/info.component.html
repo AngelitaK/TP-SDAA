@@ -1,0 +1,106 @@
+<app-header></app-header>
+
+<div style="background-color: #2F4454; padding-top: 4rem; min-height: 100vh;">
+  <br>
+  <h2 style="color: #14A76C; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-align: center;">
+    <b>{{ module.moduleName}}</b></h2>
+  <br>
+
+  <div class="container">
+
+    <img style="width: 100%; height: 700px; display: block; margin: auto;"
+      src="data:image/jpeg;base64,{{module.modulePic2}}">
+    <br>
+
+    <h3 style="color: #14A76C;"><b>About This Module:</b></h3>
+    <p>{{module.info}}</p>
+
+    <h3 style="color: #14A76C;"><b>Venue:</b></h3>
+    <p>{{module.venue}}</p>
+
+    <h3 style="color: #14A76C;"><b>Category:</b></h3>
+    <p>{{module.category}}</p>
+
+    <h3 style="color: #14A76C;"><b>Class Size:</b></h3>
+    <p>{{module.classSize}}</p>
+
+  </div>
+
+  <div style="display: block; margin: auto; text-align: center;">
+    <button style="text-align:center; width: 20rem; height: 3rem;" routerLink="/medicaldeclaration" routerLinkActive="active">Sign Up</button>
+    <br>
+    <br>
+    <button *ngIf="isAdmin" style="text-align:center; width:20rem; height: 3rem;" (click)="open(content)">Edit</button>
+  </div>
+
+  <br>
+</div>
+
+<app-footer></app-footer>
+
+<!--EDIT MODULE MODAL-->
+<ng-template #content let-modal>
+  <div class="modal-header" style="text-align: center;">
+    <h4 class="modal-title" id="modal-basic-title">Edit Module</h4>
+    <button style="background-color: transparent; width: fit-content;" type="button" class="close" aria-label="Close"
+      (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" style="text-align: center;">
+    <form [formGroup]="myForm" novalidate>
+
+      <label for="password">Module Name: </label>
+      <p><input formControlName="moduleName" id="moduleName" type="text" required="true" value="{{module.moduleName}}">
+      </p>
+
+      <label for="password">Module Category: </label>
+      <p><input formControlName="category" id="category" type="text" required="true" value="{{module.category}}"></p>
+
+      <label for="password">Class Size: </label>
+      <p><input formControlName="classSize" id="classSize" type="text" required="true"value="{{module.classSize}}"></p>
+
+      <label for="password">Module Information: </label>
+      <p><input formControlName="info" id="info" type="text" required="true" value="{{module.info}}"></p>
+
+      <label for="password">Module Venue: </label>
+      <p><input formControlName="venue" id="venue" type="text" required="true" value="{{module.venue}}"></p>
+
+      <label for="password">Picture 1 (Display Photo): </label>
+      <p><input type="file" formControlName="modulePic" (change)="imageString($event)"></p>
+
+      <label for="password">Picture 2 (Info Photo): </label>
+      <p><input type="file" formControlName="modulePic2" (change)="imageString2($event)"></p>
+
+      <label for="password"  style="text-align: center; display: block; margin: auto;">Timings: </label>
+      <mat-checkbox formControlName="Mon11to1" class="example-margin" value="{{module.Mon11to1}}">Monday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Tues11to1" class="example-margin" value="{{module.Tues11to1}}">Tuesday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Wed11to1" class="example-margin" value="{{module.Wed11to1}}">Wednesday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Thurs11to1" class="example-margin" value="{{module.Thurs11to1}}">Thursday 11am to 1pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Fri11to1" class="example-margin" value="{{module.Fri11to1}}">Friday 11am to 1pm</mat-checkbox>
+      <br>
+
+      <mat-checkbox formControlName="Mon4to6" class="example-margin" value="{{module.Mon4to6}}">Monday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Tues4to6" class="example-margin" value="{{module.Tues4to6}}">Tuesday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Wed4to6" class="example-margin" value="{{module.Wed4to6}}">Wednesday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Thurs4to6" class="example-margin" value="{{module.Thurs4to6}}">Thursday 4pm to 6pm</mat-checkbox>
+      <br>
+      <mat-checkbox formControlName="Fri4to6" class="example-margin" value="{{module.Fri4to6}}">Friday 4pm to 6pm</mat-checkbox>
+
+    </form>
+  </div>
+  <div class="modal-footer" style="text-align: center; display: block; margin: auto;">
+    <button style="width: 8rem;" type="button" class="btn btn-outline-dark" (click)="onSubmit('Save click')"
+      (click)="modal.close('Save click')">Edit</button>
+    &nbsp;
+    <button style="width: 8rem;" type="button" class="btn btn-outline-dark" (click)="delete('Save click')" (click)="modal.close('Save click')">Delete</button>
+  </div>
+</ng-template>
